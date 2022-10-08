@@ -4,12 +4,12 @@
     "width": 800,
     "height": 400,
     "data": {
-        "url": "https://raw.githubusercontent.com/chienming12/fit3179/main/us-10m.json",
-        "format": { "type": "topojson", "feature": "counties" }
+        "url": "https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json",
+        "format": { "type": "topojson", "feature": "states" }
     },
     "layer": [{
             "transform": [
-                { "calculate": "'Data is not available in ' + datum.State", "as": "note" }
+                { "calculate": "'Data is not available in ' + datum.properties.name", "as": "note" }
             ],
             "mark": { "type": "geoshape", "fill": "lightgray", "stroke": "white" },
             "encoding": { "tooltip": { "field": "note" } }
@@ -21,23 +21,22 @@
                     "data": {
                         "url": "https://media.githubusercontent.com/media/chienming12/fit3179/main/US_Accidents_Dec21_updated_cleaned.csv"
                     },
-                    "key": "State",
-                    "fields": ["Temperature(F)"]
+                    "key": "ID",
+                    "fields": ["Temperature", "State"]
                 }
             }],
             "projection": { "type": "albersUsa" },
             "mark": "geoshape",
             "encoding": {
                 "color": {
-                    "field": "Temperature(F)",
+                    "field": "Temperature",
                     "type": "quantitative",
                     "scale": { "type": "log" }
                 },
                 "tooltip": [
-                    { "field": "ID", "type": "nominal" },
-                    { "field": "State", "type": "nominal" },
+                    { "field": "State", "type": "nominal", "title": "State" },
                     {
-                        "field": "Temperature(F)",
+                        "field": "Temperature",
                         "type": "quantitative",
                         "title": "Temperature"
                     }
