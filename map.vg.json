@@ -1,6 +1,6 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "title": "US Accidents in December 2021",
+    "title": "US Accidents from 2016 to 2021",
     "width": 800,
     "height": 400,
     "data": {
