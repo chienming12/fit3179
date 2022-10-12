@@ -12,8 +12,35 @@ body {
 
 .floating-text {
     position: absolute;
-    top: 260px;
+    top: 280px;
     left: 570px;
+    background-color: white;
+    color: black;
+    opacity: 80%;
+}
+
+.floating-text-2 {
+    position: absolute;
+    bottom: -580px;
+    left: 610px;
+    background-color: white;
+    color: black;
+    opacity: 80%;
+}
+
+.floating-text-3 {
+    position: absolute;
+    bottom: -600px;
+    left: 610px;
+    background-color: white;
+    color: black;
+    opacity: 80%;
+}
+
+.floating-text-4 {
+    position: absolute;
+    bottom: -800px;
+    right: 450px;
     background-color: white;
     color: black;
     opacity: 80%;
@@ -54,5 +81,5 @@ h1 {
 }
 
 .space {
-    height: 20px;
+    height: 40px;
 }

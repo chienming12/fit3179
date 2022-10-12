@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Multiple Visualisations</title>
+    <title>US Car Accidents from 2016 to 2021</title>
     <!-- Import Vega & Vega-Lite (does not have to be from CDN) -->
     <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
@@ -28,7 +28,7 @@
     <div class="page">
 
         <div>
-            <h1> Multiple Visualisations </h1>
+            <h1> US Car Accidents from 2016 to 2021 </h1>
         </div>
 
         <!-- pure grid group -->
@@ -45,7 +45,27 @@
             <div id="vis2" class="vis-container"></div>
         </div>
         <!-- end pure grid group -->
+
+        <div class="space">
+        </div>
+        <!-- pure grid group -->
+        <div>
+            <div id="vis3" class="vis-container"></div>
+        </div>
+        <!-- end pure grid group -->
+
+        <div class="space">
+        </div>
+        <!-- pure grid group -->
+        <div>
+            <div id="vis4" class="vis-container"></div>
+        </div>
+        <!-- end pure grid group -->
+
         <div class="floating-text">Total cases: 9272779248</div>
+        <div class="floating-text-2">Most people are not mindful driving without the sense of danger.</div>
+        <div class="floating-text-3">Hence, more people get into accidents on a fair weather.</div>
+        <div class="floating-text-4">On the other hand, drivers are more careful during rainy days.</div>
     </div>
 
 
@@ -55,6 +75,8 @@
     <script type="text/javascript">
         var specVis1 = "js/donut.vg.json";
         var specVis2 = "js/map.vg.json";
+        var specVis3 = "js/severity_bar.vg.json";
+        var specVis4 = "js/weather_bar.vg.json";
 
         vegaEmbed('#vis1', specVis1, {
             "actions": false
@@ -65,6 +87,14 @@
         }).then(function(result) {
             // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
         }).catch(console.error);
+
+        vegaEmbed('#vis3', specVis3, {
+            "actions": false
+        });
+
+        vegaEmbed('#vis4', specVis4, {
+            "actions": false
+        });
     </script>
 </body>
 

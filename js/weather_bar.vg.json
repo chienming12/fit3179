@@ -1,17 +1,25 @@
 {
     "$schema": "https://vega.github.io/schema/vega/v5.json",
-    "title": "Number of cases according to Severity",
+    "title": "Number of cases according to Weather Conditions",
     "width": 800,
-    "height": 400,
+    "height": 300,
     "padding": 5,
 
     "data": [{
         "name": "usdata",
         "values": [
-            { "category": "1", "amount": 580232 },
-            { "category": "2", "amount": 1456544 },
-            { "category": "3", "amount": 1132142 },
-            { "category": "4", "amount": 91216 }
+            { "category": "Fair", "amount": 1107194 },
+            { "category": "Mostly Cloudy", "amount": 363959 },
+            { "category": "Cloudy", "amount": 348767 },
+            { "category": "Partly Cloudy", "amount": 249939 },
+            { "category": "Clear", "amount": 173823 },
+            { "category": "Light Rain", "amount": 128403 },
+            { "category": "Overcast", "amount": 84882 },
+            { "category": "Scattered Clouds", "amount": 45132 },
+            { "category": "Light Snow", "amount": 43752 },
+            { "category": "Fog", "amount": 41226 },
+            { "category": "Haze", "amount": 36354 },
+            { "category": "Rain", "amount": 31044 }
         ]
     }],
 
