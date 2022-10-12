@@ -22,23 +22,23 @@
                         "url": "https://media.githubusercontent.com/media/chienming12/fit3179/main/US_Accidents_Dec21_updated_cleaned.csv"
                     },
                     "key": "State",
-                    "fields": ["Temperature"]
+                    "fields": ["Humidity","State"]
                 }
             }],
             "projection": { "type": "albersUsa" },
             "mark": "geoshape",
             "encoding": {
                 "color": {
-                    "field": "Temperature",
+                    "field": "Humidity",
                     "type": "quantitative",
                     "scale": { "type": "log" }
                 },
                 "tooltip": [
                     { "field": "State", "type": "nominal", "title": "State" },
                     {
-                        "field": "Temperature",
+                        "field": "Humidity",
                         "type": "quantitative",
-                        "title": "Temperature"
+                        "title": "Humidity(%)"
                     }
                 ]
             }
