@@ -1,0 +1,38 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "view": { "stroke": "black" },
+    "width": 350,
+    "height": 350,
+    "data": {
+        "values": [
+            { "State": "California", "value": 39613493 },
+            { "State": "Texas", "value": 29730311 },
+            { "State": "Florida", "value": 21944577 },
+            { "State": "New York", "value": 19299981 },
+            { "State": "Pennsylvania", "value": 12804123 },
+            { "State": "Illinois", "value": 12569321 },
+            { "State": "Ohio", "value": 11714618 },
+            { "State": "Georgia", "value": 10830007 },
+            { "State": "North Carolina", "value": 10701022 },
+            { "State": "Michigan", "value": 9992427 }
+        ]
+    },
+    "mark": { "type": "arc", "innerRadius": 50 },
+    "encoding": {
+        "theta": { "field": "value", "type": "quantitative" },
+        "color": {
+            "field": "State",
+            "type": "nominal",
+            "legend": {
+                "titleColor": "white",
+                "labelColor": "white",
+                "labelFontSize": 17,
+                "titleFontSize": 18
+            }
+        },
+        "tooltip": [
+            { "field": "State", "type": "nominal", "title": "State" },
+            { "field": "value", "type": "quantitative", "title": "Total Population" }
+        ]
+    }
+}

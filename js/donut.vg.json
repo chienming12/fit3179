@@ -1,0 +1,34 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": "Total cases in 6 years",
+    "width": 350,
+    "height": 350,
+    "data": {
+        "values": [
+            { "Year": "2016", "value": 73213 },
+            { "Year": "2017", "value": 92708 },
+            { "Year": "2018", "value": 94728 },
+            { "Year": "2019", "value": 186804 },
+            { "Year": "2020", "value": 466717 },
+            { "Year": "2021", "value": 1157786 }
+        ]
+    },
+    "mark": { "type": "arc", "innerRadius": 100 },
+    "encoding": {
+        "theta": { "field": "value", "type": "quantitative" },
+        "color": {
+            "field": "Year",
+            "type": "nominal",
+            "legend": {
+                "titleColor": "black",
+                "labelColor": "black",
+                "labelFontSize": 17,
+                "titleFontSize": 18
+            }
+        },
+        "tooltip": [
+            { "field": "Year", "type": "nominal", "title": "Year" },
+            { "field": "value", "type": "quantitative", "title": "Total cases" }
+        ]
+    }
+}
