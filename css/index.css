@@ -13,7 +13,7 @@ body {
 .floating-text {
     position: absolute;
     top: 280px;
-    left: 570px;
+    left: 590px;
     background-color: white;
     color: black;
     opacity: 80%;
@@ -22,7 +22,7 @@ body {
 .floating-text-2 {
     position: absolute;
     bottom: -580px;
-    left: 610px;
+    left: 630px;
     background-color: white;
     color: black;
     opacity: 80%;
@@ -31,7 +31,7 @@ body {
 .floating-text-3 {
     position: absolute;
     bottom: -600px;
-    left: 610px;
+    left: 630px;
     background-color: white;
     color: black;
     opacity: 80%;
