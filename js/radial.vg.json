@@ -1,0 +1,28 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Top 3 States with Highest Cases ",
+  "data": {
+    "values": [
+        { "State": "CA", "value": 795868 },
+        { "State": "FL", "value": 401388 },
+        { "State": "TX", "value": 149037 }
+    ]
+},
+  "layer": [{
+    "mark": {"type": "arc", "innerRadius": 20, "stroke": "#fff"}
+  },{
+    "mark": {"type": "text", "radiusOffset": 10},
+    "encoding": {
+      "text": {"field": "State", "type": "nominal"}
+    }
+  }],
+  "encoding": {
+    "theta": {"field": "value", "type": "quantitative", "stack": true},
+    "radius": {"field": "value", "scale": {"type": "sqrt", "zero": true, "rangeMin": 20}},
+    "color": {"field": "value", "type": "nominal", "legend": null},
+    "tooltip": [
+      { "field": "State", "type": "nominal", "title": "State" },
+      { "field": "value", "type": "quantitative", "title": "Number of cases" }
+    ]
+  }
+}
