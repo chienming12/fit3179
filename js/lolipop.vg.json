@@ -1,0 +1,209 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": "Number of cases according to Weather Conditions",
+    "width": 800,
+    "height": 300,
+    "padding": 5,
+
+    "data": {
+        "values": [
+            { "category": "Fair", "amount": 1107194 },
+            { "category": "Mostly Cloudy", "amount": 363959 },
+            { "category": "Cloudy", "amount": 348767 },
+            { "category": "Partly Cloudy", "amount": 249939 },
+            { "category": "Clear", "amount": 173823 },
+            { "category": "Light Rain", "amount": 128403 },
+            { "category": "Overcast", "amount": 84882 },
+            { "category": "Scattered Clouds", "amount": 45132 },
+            { "category": "Light Snow", "amount": 43752 },
+            { "category": "Fog", "amount": 41226 },
+            { "category": "Haze", "amount": 36354 },
+            { "category": "Rain", "amount": 31044 }
+        ]
+    },
+
+    "layer": [
+        {
+          "params": [
+            {
+              "name": "highlight",
+              "select": {"type": "point","on": "mouseover"}
+            },
+            {
+              "name": "select",
+              "select": "point"
+            }
+          ],
+          "mark": {"type": "bar","size":10, "stroke": "black"},
+          "encoding": {
+            "y": {"field": "category", "type": "ordinal", "title": "Weather Condition","sort":"-x",
+          "axis":{
+            "titleColor":"black",
+            "titleFontSize":16,
+            "labelColor":"black",
+            "labelFontSize":14
+          }},
+            "x": {
+              "aggregate": "sum",
+              "field": "amount",
+              "title": "Number of cases",
+              "axis":{
+                "titleColor":"black",
+                "titleFontSize":16,
+                "labelColor":"black",
+                "labelFontSize":14,
+                "grid": false
+              }
+            },
+            "fillOpacity": {
+              "condition": {
+                "param": "select",
+                "value": 1
+              },
+              "value": 0.3
+            },
+            "strokeWidth": {
+              "condition": [
+                {
+                  "param": "select",
+                  "empty": false,
+                  "value": 1
+                },
+                {
+                  "param": "highlight",
+                  "empty": false,
+                  "value": 1
+                }
+              ],
+              "value": 0
+            },
+            "tooltip":[
+              {"field": "category", "type": "nominal", "title": "Weather Condition"},
+              {"field": "amount", "type": "quantitative", "title": "Number of cases"}
+            ],
+            "color":{
+              "legend":null,
+              "field":"category",
+              "type": "nominal",
+              "scale":{
+                "domain":[
+                    "Fair",
+                    "Mostly Cloudy",
+                    "Cloudy",
+                    "Partly Cloudy",
+                    "Clear",
+                    "Light Rain",
+                    "Overcast",
+                    "Scattered Clouds",
+                    "Light Snow",
+                    "Fog",
+                    "Haze",
+                    "Rain"
+                ],
+                "range":[
+                  "#c32148",
+                  "#ADD8E6",
+                  "#ADD8E6",
+                  "#ADD8E6",
+                  "#ADD8E6",
+                  "#ADD8E6",
+                  "#ADD8E6",
+                  "#ADD8E6",
+                  "#ADD8E6",
+                  "#ADD8E6",
+                  "#ADD8E6",
+                  "#FFA500"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "mark": {"type": "point", "size": 300, "filled": true},
+          "encoding": {
+              "y": {"field": "category", "type": "ordinal", "title": "Weather Condition", "sort":"-x"},
+              "x": {
+                "aggregate": "sum",
+                "field": "amount"
+              },
+              "tooltip":[
+                {"field": "category", "type": "nominal", "title": "Weather Condition"},
+                {"field": "amount", "type": "quantitative", "title": "Number of Cases"}
+              ],
+              "color":{
+                "legend":null,
+                "field":"category",
+                "type": "nominal",
+                "scale":{
+                    "domain":[
+                        "Fair",
+                        "Mostly Cloudy",
+                        "Cloudy",
+                        "Partly Cloudy",
+                        "Clear",
+                        "Light Rain",
+                        "Overcast",
+                        "Scattered Clouds",
+                        "Light Snow",
+                        "Fog",
+                        "Haze",
+                        "Rain"
+                    ],
+                    "range":[
+                      "#7B68EE",
+                      "#A9A9A9",
+                      "#FFA500",
+                      "#A9A9A9",
+                      "#A9A9A9",
+                      "#A9A9A9",
+                      "#A9A9A9",
+                      "#FF1493",
+                      "#A9A9A9",
+                      "#A9A9A9",
+                      "#A9A9A9",
+                      "#A9A9A9"
+                    ]
+                }
+              }
+            }
+        },
+        {
+            "transform": [
+              {"filter":"datum.category == 'Fair'"},
+              {
+                "calculate": "'Fair weather is usually when people;travel more, hence more accidents occur.'",
+                "as": "text_annotation_raw"
+              },
+              {
+                "calculate": "split(datum.text_annotation_raw,';')",
+                "as": "text_annotation"
+              }
+            ],
+            "mark": {"type": "text", "dx": 200, "dy": -110},
+            "encoding": {
+              "text": {"field": "text_annotation"},
+              "color": {"value": "#000000"},
+              "size": {"value": 15}
+            }
+        },
+        {
+            "transform": [
+              {"filter":"datum.category == 'Rain'"},
+              {
+                "calculate": "'Rainy weather is usually when people;travel less and safer, hence less accidents occur.'",
+                "as": "text_annotation_raw"
+              },
+              {
+                "calculate": "split(datum.text_annotation_raw,';')",
+                "as": "text_annotation"
+              }
+            ],
+            "mark": {"type": "text", "dx": -200, "dy": 120},
+            "encoding": {
+              "text": {"field": "text_annotation"},
+              "color": {"value": "#000000"},
+              "size": {"value": 15}
+            }
+        }
+      ]
+}
