@@ -1,6 +1,12 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": "Top 3 States with Highest Cases ",
+  "config": {
+    "title": {
+      "color":"black",
+      "fontSize":20
+    }
+  },
   "data": {
     "values": [
         { "State": "CA", "value": 795868 },

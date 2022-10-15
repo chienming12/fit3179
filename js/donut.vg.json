@@ -1,6 +1,12 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "title": "Total cases in 6 years",
+    "config": {
+        "title": {
+          "color":"black",
+          "fontSize":20
+        }
+      },
     "description": "Total cases in 6 years",
     "width": 350,
     "height": 350,

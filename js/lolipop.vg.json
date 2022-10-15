@@ -1,6 +1,12 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "title": "Number of cases according to Weather Conditions",
+    "config": {
+      "title": {
+        "color":"black",
+        "fontSize":20
+      }
+    },
     "width": 800,
     "height": 300,
     "padding": 5,
