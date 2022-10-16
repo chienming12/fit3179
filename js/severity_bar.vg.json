@@ -2,70 +2,75 @@
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "title": "Number of cases against Severity",
     "config": {
-      "title": {
-        "color":"black",
-        "fontSize":20
-      }
+        "title": {
+            "color": "black",
+            "fontSize": 20
+        },
+        "style": {
+            "cell": {
+                "stroke": "transparent"
+            }
+        }
     },
-    "width": 800,
+    "background": "#F6E4D1",
+    "width": 400,
     "height": 400,
     "padding": 5,
     "data": {
-      "values": [
-        { "Severity": "1", "cases": 580232 },
-        { "Severity": "2", "cases": 1456544 },
-        { "Severity": "3", "cases": 1132142 },
-        { "Severity": "4", "cases": 91216 }
-    ]
+        "values": [
+            { "Severity": "1", "cases": 580232 },
+            { "Severity": "2", "cases": 1456544 },
+            { "Severity": "3", "cases": 1132142 },
+            { "Severity": "4", "cases": 91216 }
+        ]
     },
     "layer": [{
-      "mark": "bar",
-      "encoding": {
-        "x": {"field": "Severity", "type": "nominal", "axis": {"labelAngle": 0}},
-        "y": {"field": "cases", "type": "quantitative", "title": "Number of cases"},
-        "color":{
-          "field":"Severity",
-          "type": "nominal",
-          "scale":{
-            "domain":[
-                "1",
-                "2",
-                "3",
-                "4"
+            "mark": "bar",
+            "encoding": {
+                "x": { "field": "Severity", "type": "nominal", "axis": { "labelAngle": 0, "grid": false } },
+                "y": { "field": "cases", "type": "quantitative", "title": "Number of cases", "axis": { "grid": false } },
+                "color": {
+                    "field": "Severity",
+                    "type": "nominal",
+                    "scale": {
+                        "domain": [
+                            "1",
+                            "2",
+                            "3",
+                            "4"
+                        ],
+                        "range": [
+                            "#ADD8E6",
+                            "#c32148",
+                            "#ADD8E6",
+                            "#ADD8E6"
+                        ]
+                    }
+                },
+                "tooltip": [
+                    { "field": "Severity", "type": "nominal", "title": "Severity" },
+                    { "field": "cases", "type": "quantitative", "title": "Number of Cases" }
+                ]
+            }
+        },
+        {
+            "transform": [
+                { "filter": "datum.Severity == '2'" },
+                {
+                    "calculate": "'Most accidents are less severe as; most happen on a fair day, which; shows that drivers can lessen the; severity of an accident on fair day.'",
+                    "as": "text_annotation_raw"
+                },
+                {
+                    "calculate": "split(datum.text_annotation_raw,';')",
+                    "as": "text_annotation"
+                }
             ],
-            "range":[
-              "#ADD8E6",
-              "#c32148",
-              "#ADD8E6",
-              "#ADD8E6"
-            ]
-          }
-        },
-        "tooltip":[
-          {"field": "Severity", "type": "nominal", "title": "Severity"},
-          {"field": "cases", "type": "quantitative", "title": "Number of Cases"}
-        ]
-      }
-    },
-    {
-      "transform": [
-        {"filter":"datum.Severity == '2'"},
-        {
-          "calculate": "'Most accidents are less severe as most happen;on a fair day, which shows that drivers can lessen; the severity of an accident on a fair day.'",
-          "as": "text_annotation_raw"
-        },
-        {
-          "calculate": "split(datum.text_annotation_raw,';')",
-          "as": "text_annotation"
+            "mark": { "type": "text", "dx": 90, "dy": -157 },
+            "encoding": {
+                "text": { "field": "text_annotation" },
+                "color": { "value": "#000000" },
+                "size": { "value": 12 }
+            }
         }
-      ],
-      "mark": {"type": "text", "dx": 160, "dy": -157},
-      "encoding": {
-        "text": {"field": "text_annotation"},
-        "color": {"value": "#000000"},
-        "size": {"value": 15}
-      }
-  }
     ]
-  }
-  
+}

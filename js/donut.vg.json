@@ -3,25 +3,30 @@
     "title": "Total cases in 6 years",
     "config": {
         "title": {
-          "color":"black",
-          "fontSize":20
+            "color": "black",
+            "fontSize": 20
+        },
+        "style": {
+            "cell": {
+                "stroke": "transparent"
+            }
         }
-      },
+    },
+    "background": "#F6E4D1",
     "description": "Total cases in 6 years",
     "width": 350,
     "height": 350,
     "data": {
         "values": [
-            { "Year": "2016", "value": 73213, "Total": "total", "cases": 2071956},
+            { "Year": "2016", "value": 73213, "Total": "total", "cases": 2071956 },
             { "Year": "2017", "value": 92708 },
             { "Year": "2018", "value": 94728 },
             { "Year": "2019", "value": 186804 },
             { "Year": "2020", "value": 466717 },
-            { "Year": "2021", "value": 1157786 }        
+            { "Year": "2021", "value": 1157786 }
         ]
     },
-    "layer": [
-        {
+    "layer": [{
             "mark": { "type": "arc", "innerRadius": 90 },
             "encoding": {
                 "theta": { "field": "value", "type": "quantitative" },
@@ -43,135 +48,135 @@
         },
         {
             "transform": [
-              {"filter":"datum.Total == 'total'"},
-              {
-                "calculate": "'Total cases: ;2,071,956'",
-                "as": "text_annotation_raw"
-              },
-              {
-                "calculate": "split(datum.text_annotation_raw,';')",
-                "as": "text_annotation"
-              }
+                { "filter": "datum.Total == 'total'" },
+                {
+                    "calculate": "'Total cases: ;2,071,956'",
+                    "as": "text_annotation_raw"
+                },
+                {
+                    "calculate": "split(datum.text_annotation_raw,';')",
+                    "as": "text_annotation"
+                }
             ],
-            "mark": {"type": "text", "dx": 0, "dy": -15},
+            "mark": { "type": "text", "dx": 0, "dy": -15 },
             "encoding": {
-              "text": {"field": "text_annotation"},
-              "color": {"value": "#000000"},
-              "size": {"value": 20}
+                "text": { "field": "text_annotation" },
+                "color": { "value": "#000000" },
+                "size": { "value": 20 }
             }
         },
         {
             "transform": [
-              {"filter":"datum.Year == '2016'"},
-              {
-                "calculate": "'3.53%'",
-                "as": "text_annotation_raw"
-              },
-              {
-                "calculate": "split(datum.text_annotation_raw,';')",
-                "as": "text_annotation"
-              }
+                { "filter": "datum.Year == '2016'" },
+                {
+                    "calculate": "'3.53%'",
+                    "as": "text_annotation_raw"
+                },
+                {
+                    "calculate": "split(datum.text_annotation_raw,';')",
+                    "as": "text_annotation"
+                }
             ],
-            "mark": {"type": "text", "dx": 20, "dy": -185},
+            "mark": { "type": "text", "dx": 20, "dy": -185 },
             "encoding": {
-              "text": {"field": "text_annotation"},
-              "color": {"value": "#000000"},
-              "size": {"value": 10}
+                "text": { "field": "text_annotation" },
+                "color": { "value": "#000000" },
+                "size": { "value": 10 }
             }
         },
         {
             "transform": [
-              {"filter":"datum.Year == '2017'"},
-              {
-                "calculate": "'4.47%'",
-                "as": "text_annotation_raw"
-              },
-              {
-                "calculate": "split(datum.text_annotation_raw,';')",
-                "as": "text_annotation"
-              }
+                { "filter": "datum.Year == '2017'" },
+                {
+                    "calculate": "'4.47%'",
+                    "as": "text_annotation_raw"
+                },
+                {
+                    "calculate": "split(datum.text_annotation_raw,';')",
+                    "as": "text_annotation"
+                }
             ],
-            "mark": {"type": "text", "dx": 72, "dy": -175},
+            "mark": { "type": "text", "dx": 72, "dy": -175 },
             "encoding": {
-              "text": {"field": "text_annotation"},
-              "color": {"value": "#000000"},
-              "size": {"value": 10}
+                "text": { "field": "text_annotation" },
+                "color": { "value": "#000000" },
+                "size": { "value": 10 }
             }
         },
         {
             "transform": [
-              {"filter":"datum.Year == '2018'"},
-              {
-                "calculate": "'4.57%'",
-                "as": "text_annotation_raw"
-              },
-              {
-                "calculate": "split(datum.text_annotation_raw,';')",
-                "as": "text_annotation"
-              }
+                { "filter": "datum.Year == '2018'" },
+                {
+                    "calculate": "'4.57%'",
+                    "as": "text_annotation_raw"
+                },
+                {
+                    "calculate": "split(datum.text_annotation_raw,';')",
+                    "as": "text_annotation"
+                }
             ],
-            "mark": {"type": "text", "dx": 117, "dy": -155},
+            "mark": { "type": "text", "dx": 117, "dy": -155 },
             "encoding": {
-              "text": {"field": "text_annotation"},
-              "color": {"value": "#000000"},
-              "size": {"value": 10}
+                "text": { "field": "text_annotation" },
+                "color": { "value": "#000000" },
+                "size": { "value": 10 }
             }
         },
         {
             "transform": [
-              {"filter":"datum.Year == '2019'"},
-              {
-                "calculate": "'9.02%'",
-                "as": "text_annotation_raw"
-              },
-              {
-                "calculate": "split(datum.text_annotation_raw,';')",
-                "as": "text_annotation"
-              }
+                { "filter": "datum.Year == '2019'" },
+                {
+                    "calculate": "'9.02%'",
+                    "as": "text_annotation_raw"
+                },
+                {
+                    "calculate": "split(datum.text_annotation_raw,';')",
+                    "as": "text_annotation"
+                }
             ],
-            "mark": {"type": "text", "dx": 175, "dy": -90},
+            "mark": { "type": "text", "dx": 175, "dy": -90 },
             "encoding": {
-              "text": {"field": "text_annotation"},
-              "color": {"value": "#000000"},
-              "size": {"value": 10}
+                "text": { "field": "text_annotation" },
+                "color": { "value": "#000000" },
+                "size": { "value": 10 }
             }
         },
         {
             "transform": [
-              {"filter":"datum.Year == '2020'"},
-              {
-                "calculate": "'22.53%'",
-                "as": "text_annotation_raw"
-              },
-              {
-                "calculate": "split(datum.text_annotation_raw,';')",
-                "as": "text_annotation"
-              }
+                { "filter": "datum.Year == '2020'" },
+                {
+                    "calculate": "'22.53%'",
+                    "as": "text_annotation_raw"
+                },
+                {
+                    "calculate": "split(datum.text_annotation_raw,';')",
+                    "as": "text_annotation"
+                }
             ],
-            "mark": {"type": "text", "dx": 175, "dy": 100},
+            "mark": { "type": "text", "dx": 175, "dy": 100 },
             "encoding": {
-              "text": {"field": "text_annotation"},
-              "color": {"value": "#000000"},
-              "size": {"value": 10}
+                "text": { "field": "text_annotation" },
+                "color": { "value": "#000000" },
+                "size": { "value": 10 }
             }
         },
         {
             "transform": [
-              {"filter":"datum.Year == '2021'"},
-              {
-                "calculate": "'55.88%'",
-                "as": "text_annotation_raw"
-              },
-              {
-                "calculate": "split(datum.text_annotation_raw,';')",
-                "as": "text_annotation"
-              }
+                { "filter": "datum.Year == '2021'" },
+                {
+                    "calculate": "'55.88%'",
+                    "as": "text_annotation_raw"
+                },
+                {
+                    "calculate": "split(datum.text_annotation_raw,';')",
+                    "as": "text_annotation"
+                }
             ],
-            "mark": {"type": "text", "dx": -200, "dy": 0},
+            "mark": { "type": "text", "dx": -200, "dy": 0 },
             "encoding": {
-              "text": {"field": "text_annotation"},
-              "color": {"value": "#000000"},
-              "size": {"value": 10}
+                "text": { "field": "text_annotation" },
+                "color": { "value": "#000000" },
+                "size": { "value": 10 }
             }
         }
     ]

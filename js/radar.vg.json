@@ -1,0 +1,173 @@
+{
+    "$schema": "https://vega.github.io/schema/vega/v5.json",
+    "description": "A radar chart example, showing multiple dimensions in a radial layout.",
+    "width": 600,
+    "height": 430,
+    "padding": 200,
+    "title": "Variables impacting Accidents in the Top 3 States",
+    "config": {
+        "title": {
+            "color": "black",
+            "fontSize": 20
+        }
+    },
+    "autosize": { "type": "none", "contains": "padding" },
+    "background": "#F6E4D1",
+    "signals": [
+        { "name": "radius", "update": "width / 2" }
+    ],
+
+    "data": [{
+            "name": "table",
+            "values": [
+                { "key": "Temperature", "value": 61.77, "category": "CA" },
+                { "key": "Humidity", "value": 57.16, "category": "CA" },
+                { "key": "Visibility", "value": 14.04, "category": "CA" },
+                { "key": "Precipitation", "value": 85.20, "category": "CA" },
+                { "key": "Temperature", "value": 68.81, "category": "TX" },
+                { "key": "Humidity", "value": 62.36, "category": "TX" },
+                { "key": "Visibility", "value": 14.82, "category": "TX" },
+                { "key": "Precipitation", "value": 124.15, "category": "TX" },
+                { "key": "Temperature", "value": 74.96, "category": "FL" },
+                { "key": "Humidity", "value": 69.98, "category": "FL" },
+                { "key": "Visibility", "value": 15.14, "category": "FL" },
+                { "key": "Precipitation", "value": 102.71, "category": "FL" }
+            ]
+        },
+        {
+            "name": "keys",
+            "source": "table",
+            "transform": [{
+                "type": "aggregate",
+                "groupby": ["key"]
+            }]
+        }
+    ],
+
+    "scales": [{
+            "name": "angular",
+            "type": "point",
+            "range": { "signal": "[-PI+0.8, PI+0.8]" },
+            "padding": 0.5,
+            "domain": { "data": "table", "field": "key" }
+        },
+        {
+            "name": "radial",
+            "type": "linear",
+            "range": { "signal": "[0, radius]" },
+            "zero": true,
+            "nice": false,
+            "domain": { "data": "table", "field": "value" },
+            "domainMin": 0
+        },
+        {
+            "name": "color",
+            "type": "ordinal",
+            "domain": { "data": "table", "field": "category" },
+            "range": { "scheme": "category10" }
+        }
+    ],
+
+    "encode": {
+        "enter": {
+            "x": { "signal": "radius" },
+            "y": { "signal": "radius" }
+        }
+    },
+    "legends": [{ "fill": "color", "title": "States" }],
+    "marks": [{
+            "type": "group",
+            "name": "categories",
+            "zindex": 1,
+            "from": {
+                "facet": { "data": "table", "name": "facet", "groupby": ["category"] }
+            },
+            "marks": [{
+                "type": "line",
+                "name": "category-line",
+                "from": { "data": "facet" },
+                "encode": {
+                    "enter": {
+                        "interpolate": { "value": "linear-closed" },
+                        "x": { "signal": "scale('radial', datum.value) * cos(scale('angular', datum.key))" },
+                        "y": { "signal": "scale('radial', datum.value) * sin(scale('angular', datum.key))" },
+                        "stroke": { "scale": "color", "field": "category" },
+                        "strokeWidth": { "value": 1 },
+                        "fill": { "scale": "color", "field": "category" },
+                        "fillOpacity": { "value": 0.1 },
+                        "tooltip": { "signal": "{'Category': datum.category,'Key': datum.key, 'Value': datum.value }" }
+                    },
+                    "update": { "fill": { "value": "#ccc" } },
+                    "hover": {
+                        "fill": { "value": "purple" }
+                    }
+                }
+            }]
+        },
+        {
+            "type": "rule",
+            "name": "radial-grid",
+            "from": { "data": "keys" },
+            "zindex": 0,
+            "encode": {
+                "enter": {
+                    "x": { "value": 0 },
+                    "y": { "value": 0 },
+                    "x2": { "signal": "radius * cos(scale('angular', datum.key))" },
+                    "y2": { "signal": "radius * sin(scale('angular', datum.key))" },
+                    "stroke": { "value": "lightgray" },
+                    "strokeWidth": { "value": 1 }
+                }
+            }
+        },
+        {
+            "type": "text",
+            "name": "key-label",
+            "from": { "data": "keys" },
+            "zindex": 1,
+            "encode": {
+                "enter": {
+                    "x": { "signal": "(radius + 10) * cos(scale('angular', datum.key))" },
+                    "y": { "signal": "(radius + 10) * sin(scale('angular', datum.key))" },
+                    "text": { "field": "key" },
+                    "align": [{
+                            "test": "abs(scale('angular', datum.key)) > PI / 2",
+                            "value": "right"
+                        },
+                        {
+                            "value": "left"
+                        }
+                    ],
+                    "baseline": [{
+                            "test": "scale('angular', datum.key) > 0",
+                            "value": "top"
+                        },
+                        {
+                            "test": "scale('angular', datum.key) == 0",
+                            "value": "middle"
+                        },
+                        {
+                            "value": "bottom"
+                        }
+                    ],
+                    "fill": { "value": "black" },
+                    "fontWeight": { "value": "bold" }
+                }
+            }
+        },
+        {
+            "type": "line",
+            "name": "outer-line",
+            "from": { "data": "radial-grid" },
+            "encode": {
+                "enter": {
+                    "interpolate": { "value": "linear-closed" },
+                    "x": { "field": "x2" },
+                    "y": { "field": "y2" },
+                    "stroke": { "value": "lightgray" },
+                    "strokeWidth": { "value": 1 }
+                }
+            }
+        }
+    ]
+}

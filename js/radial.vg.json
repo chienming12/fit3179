@@ -1,34 +1,62 @@
 {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "Top 3 States with Highest Cases ",
-  "config": {
-    "title": {
-      "color":"black",
-      "fontSize":20
-    }
-  },
-  "data": {
-    "values": [
-        { "State": "CA", "value": 795868 },
-        { "State": "FL", "value": 401388 },
-        { "State": "TX", "value": 149037 }
-    ]
-},
-  "layer": [{
-    "mark": {"type": "arc", "innerRadius": 20, "stroke": "#fff"}
-  },{
-    "mark": {"type": "text", "radiusOffset": 10},
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": "Top 3 States with Highest Cases ",
+    "config": {
+        "title": {
+            "color": "black",
+            "fontSize": 20
+        },
+        "style": {
+            "cell": {
+                "stroke": "transparent"
+            }
+        }
+    },
+    "background": "#F6E4D1",
+    "width": 300,
+    "height": 300,
+    "data": {
+        "values": [
+            { "State": "CA", "value": 795868 },
+            { "State": "FL", "value": 401388 },
+            { "State": "TX", "value": 149037 }
+        ]
+    },
+    "layer": [{
+            "mark": { "type": "arc", "innerRadius": 20, "stroke": "#fff" }
+        }, {
+            "mark": { "type": "text", "radiusOffset": 10 },
+            "encoding": {
+                "text": { "field": "State", "type": "nominal" }
+            }
+        },
+        {
+            "transform": [
+                { "filter": "datum.State == 'CA'" },
+                {
+                    "calculate": "'    '",
+                    "as": "text_annotation_raw"
+                },
+                {
+                    "calculate": "split(datum.text_annotation_raw,';')",
+                    "as": "text_annotation"
+                }
+            ],
+            "mark": { "type": "text", "dx": -330, "dy": 0 },
+            "encoding": {
+                "text": { "field": "text_annotation" },
+                "color": { "value": "#000000" },
+                "size": { "value": 15 }
+            }
+        }
+    ],
     "encoding": {
-      "text": {"field": "State", "type": "nominal"}
+        "theta": { "field": "value", "type": "quantitative", "stack": true },
+        "radius": { "field": "value", "scale": { "type": "sqrt", "zero": true, "rangeMin": 20 } },
+        "color": { "field": "value", "type": "nominal", "legend": null },
+        "tooltip": [
+            { "field": "State", "type": "nominal", "title": "State" },
+            { "field": "value", "type": "quantitative", "title": "Number of cases" }
+        ]
     }
-  }],
-  "encoding": {
-    "theta": {"field": "value", "type": "quantitative", "stack": true},
-    "radius": {"field": "value", "scale": {"type": "sqrt", "zero": true, "rangeMin": 20}},
-    "color": {"field": "value", "type": "nominal", "legend": null},
-    "tooltip": [
-      { "field": "State", "type": "nominal", "title": "State" },
-      { "field": "value", "type": "quantitative", "title": "Number of cases" }
-    ]
-  }
 }

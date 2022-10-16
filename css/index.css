@@ -10,6 +10,11 @@ body {
     background-color: lightgray;
 }
 
+#txt1 {
+    font-size: 14px;
+    text-align: justify;
+}
+
 .floating-text {
     position: absolute;
     top: 280px;
@@ -48,15 +53,15 @@ body {
 
 .page {
     width: 850px;
-    height: fit-content;
-    background-color: white;
+    height: 3950px;
+    background-color: #F6E4D1;
     margin: auto;
     padding: 50px;
     padding-top: 35px;
 }
 
 .vis-container {
-    width: 100%;
+    width: fit-content;
 }
 
 .description h2,

@@ -1,36 +1,41 @@
 {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "Severity against Distance",
-  "config": {
-    "title": {
-      "color":"black",
-      "fontSize":20
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": "Severity against Distance",
+    "config": {
+        "title": {
+            "color": "black",
+            "fontSize": 20
+        },
+        "style": {
+            "cell": {
+                "stroke": "transparent"
+            }
+        }
+    },
+    "background": "#F6E4D1",
+    "width": 400,
+    "height": 500,
+    "data": {
+        "url": "https://media.githubusercontent.com/media/chienming12/fit3179/main/csv/US_Accidents_Dec21_distanceBySeverity.csv"
+    },
+    "mark": {
+        "type": "point",
+        "opacity": 0.5
+    },
+    "encoding": {
+        "x": { "field": "Severity", "type": "quantitative" },
+        "y": { "field": "Distance", "type": "quantitative" },
+        "color": {
+            "field": "Severity",
+            "type": "nominal"
+        },
+        "shape": {
+            "field": "Severity",
+            "type": "nominal"
+        },
+        "tooltip": [
+            { "field": "Severity", "type": "quantitative", "title": "Severity" },
+            { "field": "Distance", "type": "quantitative", "title": "Distance" }
+        ]
     }
-  },
-  "width": 400,
-  "height": 200,
-  "data": {
-    "url": "https://media.githubusercontent.com/media/chienming12/fit3179/main/csv/US_Accidents_Dec21_distanceBySeverity.csv"
-  },
-  "mark": {
-    "type": "point",
-    "opacity": 0.5
-  },
-  "encoding": {
-    "x": {"field": "Severity", "type": "quantitative"},
-    "y": {"field": "Distance", "type": "quantitative"},
-    "color":{
-      "field":"Severity",
-      "type": "nominal"
-    },
-    "shape": {
-      "field":"Severity",
-      "type": "nominal"
-    },
-    "tooltip":[
-      {"field": "Severity", "type": "quantitative", "title": "Severity"},
-      {"field": "Distance", "type": "quantitative", "title": "Number of Cases"}
-    ]
-  }
 }
-  

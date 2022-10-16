@@ -3,10 +3,16 @@
     "title": "Humidity of US States",
     "config": {
         "title": {
-          "color":"black",
-          "fontSize":20
+            "color": "black",
+            "fontSize": 20
+        },
+        "style": {
+            "cell": {
+                "stroke": "transparent"
+            }
         }
     },
+    "background": "#F6E4D1",
     "width": 800,
     "height": 400,
     "data": {
@@ -51,21 +57,21 @@
         },
         {
             "transform": [
-              {"filter":"datum.State == 'TX'"},
-              {
-                "calculate": "'Texas and Florida are the bigger states that are included; in the top 3 states, as it is shown, when the humidity is higher,; it tends to cause more slipper roads, thus more accidents occur.'",
-                "as": "text_annotation_raw"
-              },
-              {
-                "calculate": "split(datum.text_annotation_raw,';')",
-                "as": "text_annotation"
-              }
+                { "filter": "datum.State == 'TX'" },
+                {
+                    "calculate": "'Texas and Florida are the bigger states that are included; in the top 3 states, as it is shown, when the humidity is higher,; it tends to cause more slipper roads, thus more accidents occur.'",
+                    "as": "text_annotation_raw"
+                },
+                {
+                    "calculate": "split(datum.text_annotation_raw,';')",
+                    "as": "text_annotation"
+                }
             ],
-            "mark": {"type": "text", "dx": -200, "dy": -200},
+            "mark": { "type": "text", "dx": -200, "dy": -200 },
             "encoding": {
-              "text": {"field": "text_annotation"},
-              "color": {"value": "#000000"},
-              "size": {"value": 10}
+                "text": { "field": "text_annotation" },
+                "color": { "value": "#000000" },
+                "size": { "value": 10 }
             }
         }
     ]
