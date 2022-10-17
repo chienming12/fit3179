@@ -1,6 +1,6 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "title": "Severity against Distance",
+    "title": "Distance against Severity",
     "config": {
         "title": {
             "color": "black",
